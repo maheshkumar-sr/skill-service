@@ -1,0 +1,86 @@
+---
+#default information
+info:
+  project: ${project.name}
+  version: ${version}
+
+endpoints:
+  health:
+    sensitive: false
+  configprops:
+    sensitive: false
+  metrics:
+    sensitive: false
+  trace:
+    sensitive: false
+  env:
+    sensitive: false
+  jolokia:
+    sensitive: false
+    enabled: true
+management:
+  info:
+    git:
+      mode: full
+  security:
+    enabled: false
+  health:
+    diskspace:
+      enabled: false
+---
+server:
+  port: 8080
+spring:
+  profiles: local
+  data:
+      mongodb:
+        host: localhost
+        port: 27017
+        username: admin
+        password: localadmin
+        database: admin
+logging:
+  level:
+    com.mahesh: DEBUG
+    org.springframework.data.mongodb.core: DEBUG
+    org.apache.kafka.clients: ERROR #turn off metadata cluster update logging
+---
+server:
+  port: 8080
+spring:
+  profiles: dev
+logging:
+  level:
+    com.mahesh: DEBUG
+    org.springframework.data.mongodb.core: DEBUG
+    org.apache.kafka.clients: ERROR #turn off metadata cluster update logging
+---
+server:
+  port: 8080
+spring:
+  profiles: qa
+logging:
+  level:
+    com.mahesh: DEBUG
+    org.springframework.data.mongodb.core: DEBUG
+    org.apache.kafka.clients: ERROR #turn off metadata cluster update logging
+---
+server:
+  port: 8080
+spring:
+  profiles: stage
+logging:
+  level:
+    com.mahesh: DEBUG
+    org.springframework.data.mongodb.core: DEBUG
+    org.apache.kafka.clients: ERROR #turn off metadata cluster update logging
+---
+server:
+  port: 8080
+spring:
+  profiles: prod
+logging:
+  level:
+    com.mahesh: DEBUG
+    org.springframework.data.mongodb.core: DEBUG
+    org.apache.kafka.clients: ERROR #turn off metadata cluster update logging
